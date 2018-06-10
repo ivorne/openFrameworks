@@ -248,8 +248,6 @@ def javaDependencies(ofRoot){
 
 def getFlavorName(abi) {
     switch (abi) {
-        case "armeabi":
-            return "armeabi";
         case "armeabi-v7a":
             return "arm7"
         case "arm64-v8a":
@@ -295,7 +293,27 @@ def coreCppFlags(abi, ofRoot){
     def ofSource = ofRoot + 'libs/openFrameworks'
     def libs = ofRoot + 'libs'
 
-    def ret = ["-std=c++14",
+    Properties properties = new Properties()
+    properties.load(rootProject.file('local.properties').newDataInputStream())
+    def ndkDir = properties.getProperty('ndk.dir', "").toString().replaceAll("\\\\", "/")
+
+    def sysroot_abi_dir = "";
+    switch (abi) {
+        case "armeabi-v7a":
+            sysroot_abi_dir = "arm-linux-androideabi";
+            break;
+        case "arm64-v8a":
+            sysroot_abi_dir = "aarch64-linux-android";
+            break;
+        case "x86":
+            sysroot_abi_dir = "i686-linux-android";
+            break;
+        case "x86_64":
+            sysroot_abi_dir = "x86_64-linux-android";
+            break;
+    }
+
+    def ret = ["-std=c++17",
             "-Wall",
             "-frtti",
             "-fexceptions",
@@ -303,6 +321,10 @@ def coreCppFlags(abi, ofRoot){
             "-fno-short-enums",
             "-ffunction-sections",
             "-fdata-sections",
+            "-O0",
+            "-D_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR",
+            "-Wno-inconsistent-missing-override",
+            "-Wno-delete-non-virtual-dtor",
             "-I${file(ofSource)}".toString(),
             "-I${file(ofSource+"/3d")}".toString(),
             "-I${file(ofSource+"/app")}".toString(),
@@ -343,8 +365,9 @@ def coreCppFlags(abi, ofRoot){
             "-I${file(libs+'/curl/include')}".toString(),
             "-I${file(libs+'/pugixml/include')}".toString(),
             "-I${file(libs+'/libxml2/include')}".toString(),
-            "-I${file(libs+'/libs/glu/include_android')}".toString()
-
+            "-I${file(libs+'/libs/glu/include_android')}".toString(),
+            "-I${file(ndkDir+'/sysroot/usr/include')}".toString(),
+            "-I${file(ndkDir+'/sysroot/usr/include/'+sysroot_abi_dir)}".toString()
     ]
 
     println "\n CPP_FLAGS "+ret+"\n\n"
