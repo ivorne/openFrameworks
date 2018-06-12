@@ -117,6 +117,7 @@ model {
 
                     cppFlags.addAll(coreCppFlags(abi, ofRoot()))
                     cppFlags.addAll(addonCppFlags(abi, ofRoot()))
+                    cppFlags.add( "-I${file("./src/")}".toString() )
 
                     ldLibs.addAll(coreLdLibs(abi, ofRoot()))
                     ldLibs.addAll(addonLdLibs(abi, ofRoot()))

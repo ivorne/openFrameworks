@@ -303,7 +303,8 @@ OF_PROJECT_SOURCE_FILES = $(shell $(FIND) $(OF_PROJECT_SOURCE_PATHS) -maxdepth 1
 # PROJECT HEADER INCLUDES (-I ...)
 ################################################################################
 
-OF_PROJECT_INCLUDES_CFLAGS := $(addprefix -I,$(filter-out $(PROJECT_INCLUDE_EXCLUSIONS),$(OF_PROJECT_SOURCE_PATHS)))
+#OF_PROJECT_INCLUDES_CFLAGS := $(addprefix -I,$(filter-out $(PROJECT_INCLUDE_EXCLUSIONS),$(OF_PROJECT_SOURCE_PATHS)))
+OF_PROJECT_INCLUDES_CFLAGS := -I$(PROJECT_ROOT)/src
 OF_ADDON_INCLUDES_CFLAGS += $(addprefix -I,$(filter-out $(PROJECT_INCLUDE_EXCLUSIONS),$(PROJECT_ADDONS_INCLUDES)))
 
 ifdef MAKEFILE_DEBUG
@@ -374,19 +375,19 @@ ifdef MAKEFILE_DEBUG
 endif
 
 ifdef PROJECT_CXX
-	CXX ?= $(PROJECT_CXX)
+	CXX = $(PROJECT_CXX)
 endif
 
 ifdef PLATFORM_CXX
-	CXX ?= $(PLATFORM_CXX)
+	CXX = $(PLATFORM_CXX)
 endif
 
 ifdef PROJECT_CC
-	CC ?= $(PROJECT_CC)
+	CC = $(PROJECT_CC)
 endif
 
 ifdef PLATFORM_CC
-	CC ?= $(PLATFORM_CC)
+	CC = $(PLATFORM_CC)
 endif
 
 # TODO: what is this for?
