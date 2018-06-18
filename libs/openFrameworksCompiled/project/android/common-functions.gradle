@@ -322,6 +322,7 @@ def coreCppFlags(abi, ofRoot){
             "-ffunction-sections",
             "-fdata-sections",
             "-O0",
+            "-ggdb",
             "-D_LIBCPP_ENABLE_CXX17_REMOVED_AUTO_PTR",
             "-Wno-inconsistent-missing-override",
             "-Wno-delete-non-virtual-dtor",
