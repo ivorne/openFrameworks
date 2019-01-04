@@ -335,6 +335,9 @@ public:
 	/// \brief Set the color of all pixels
 	void setColor(const ofColor_<PixelType>& color);
 
+	/// \brief Faster alternative to setColor
+	void pixels_memset( int val );
+
 	/// \brief Provides access to each channel of each pixel. If you have RGB pixel
 	/// data, then you'll have 3 values for each pixel, if you have RGBA,
 	/// you'll have 4

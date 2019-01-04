@@ -652,6 +652,13 @@ ofColor_<PixelType> ofPixels_<PixelType>::getColor(size_t x, size_t y) const {
 }
 
 template<typename PixelType>
+void ofPixels_<PixelType>::pixels_memset( int val )
+{
+	size_t size = bytesFromPixelFormat(width,height,pixelFormat);
+	memset( (void*)pixels, val, size );
+}
+
+template<typename PixelType>
 void ofPixels_<PixelType>::setColor(size_t index, const ofColor_<PixelType>& color) {
 
 	switch(pixelFormat){
