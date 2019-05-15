@@ -395,16 +395,16 @@ Java_cc_openframeworks_OFAndroid_render( JNIEnv*  env, jclass  thiz )
 		while(!events.empty()){
 			switch(events.front().type){
 			case ofTouchEventArgs::down:
-				window->events().notifyMousePressed(events.front().x,events.front().y,0);
+				//window->events().notifyMousePressed(events.front().x,events.front().y,0);
 				ofNotifyEvent(window->events().touchDown,events.front());
 				break;
 			case ofTouchEventArgs::up:
-				window->events().notifyMouseReleased(events.front().x,events.front().y,0);
+				//window->events().notifyMouseReleased(events.front().x,events.front().y,0);
 				ofNotifyEvent(window->events().touchUp,events.front());
 				break;
 			case ofTouchEventArgs::move:
-				window->events().notifyMouseMoved(events.front().x,events.front().y);
-				window->events().notifyMouseDragged(events.front().x,events.front().y,0);
+				//window->events().notifyMouseMoved(events.front().x,events.front().y);
+				//window->events().notifyMouseDragged(events.front().x,events.front().y,0);
 				ofNotifyEvent(window->events().touchMoved,events.front());
 				break;
 			case ofTouchEventArgs::doubleTap:

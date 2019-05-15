@@ -33,7 +33,7 @@ public class OFAndroidLifeCycleHelper
 			return;
 		appInitFlag = true;
 		
-		copyAssetsToDataPath(activity);
+		//copyAssetsToDataPath(activity);
 		
 		OFAndroid.init();
 	}
