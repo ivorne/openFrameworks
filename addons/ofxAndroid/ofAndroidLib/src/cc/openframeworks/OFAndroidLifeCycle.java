@@ -256,7 +256,7 @@ public class OFAndroidLifeCycle
 	static String TAG = "OF";
 		
 	public static void glCreate()
-	{
+	{	
 		Log.d(TAG, "glCreate");
 		if(m_countActivities == 0)
 			pushState(State.create);

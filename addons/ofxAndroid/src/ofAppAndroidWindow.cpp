@@ -297,7 +297,6 @@ Java_cc_openframeworks_OFAndroid_onResume( JNIEnv*  env, jobject  thiz ){
 
 void
 Java_cc_openframeworks_OFAndroid_onPauseGameplay( JNIEnv*  env, jobject  thiz ){
-	paused = true;
 	ofNotifyEvent(ofxAndroidEvents().pause_gameplay);
 }
 

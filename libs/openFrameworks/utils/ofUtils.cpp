@@ -520,10 +520,13 @@ void ofSetDataPathRoot(const std::filesystem::path& newRoot){
 
 //--------------------------------------------------
 string ofToDataPath(const std::filesystem::path & path, bool makeAbsolute){
-	if (!enableDataPath)
-        return path.string();
+	if (makeAbsolute && path.is_absolute())
+		return path.string();
 
-    bool hasTrailingSlash = !path.empty() && path.generic_string().back()=='/';
+	if (!enableDataPath)
+		return path.string();
+
+	bool hasTrailingSlash = !path.empty() && path.generic_string().back()=='/';
 
 	// if our Current Working Directory has changed (e.g. file open dialog)
 #ifdef TARGET_WIN32
@@ -1162,7 +1165,6 @@ string ofGetVersionInfo(){
 		sstr << "-" << OF_VERSION_PRE_RELEASE;
 	}
 
-	sstr << std::endl;
 	return sstr.str();
 }
 
