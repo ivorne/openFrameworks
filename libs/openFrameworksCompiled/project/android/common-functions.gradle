@@ -385,7 +385,7 @@ def addonLdCompilerFlags(abi, ofRoot){
 }
 
 def coreLdLibs(abi, ofRoot){
-    return ["atomic","android", "OpenSLES", "z", "GLESv1_CM", "GLESv2", "log"]
+    return ["atomic","android", "OpenSLES", "z", "GLESv1_CM", "GLESv2", "GLESv3", "log"]
 }
 
 
