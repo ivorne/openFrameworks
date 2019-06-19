@@ -13,7 +13,7 @@
 #		include <filesystem>
 #	endif
 #else
-#	if !_MSC_VER
+#	if !defined( _MSC_VER ) || !_MSC_VER
 #		define BOOST_NO_CXX11_SCOPED_ENUMS
 #		define BOOST_NO_SCOPED_ENUMS
 #	endif
