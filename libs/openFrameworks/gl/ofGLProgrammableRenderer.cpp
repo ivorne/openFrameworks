@@ -1591,14 +1591,14 @@ void ofGLProgrammableRenderer::drawRectangle(float x, float y, float z, float w,
 	ofGLProgrammableRenderer * mutThis = const_cast<ofGLProgrammableRenderer*>(this);
 	if (currentStyle.rectMode == OF_RECTMODE_CORNER){
 		rectMesh.getVertices()[0] = {x,y,z};
-		rectMesh.getVertices()[1] = {x+w, y, z};
+		rectMesh.getVertices()[1] = {x, y+h, z};
 		rectMesh.getVertices()[2] = {x+w, y+h, z};
-		rectMesh.getVertices()[3] = {x, y+h, z};
+		rectMesh.getVertices()[3] = {x+w, y, z};
 	}else{
 		rectMesh.getVertices()[0] = {x-w/2.0f, y-h/2.0f, z};
-		rectMesh.getVertices()[1] = {x+w/2.0f, y-h/2.0f, z};
+		rectMesh.getVertices()[1] = {x-w/2.0f, y+h/2.0f, z};
 		rectMesh.getVertices()[2] = {x+w/2.0f, y+h/2.0f, z};
-		rectMesh.getVertices()[3] = {x-w/2.0f, y+h/2.0f, z};
+		rectMesh.getVertices()[3] = {x+w/2.0f, y-h/2.0f, z};
 	}
     
 	// use smoothness, if requested:
