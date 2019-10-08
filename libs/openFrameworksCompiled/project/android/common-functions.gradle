@@ -270,9 +270,14 @@ def buildToolchain(){
 }
 
 def appSrcDirs(ofRoot){
+	Properties properties = new Properties()
+    properties.load(rootProject.file('local.properties').newDataInputStream())
+    def ndkDir = properties.getProperty('ndk.dir', "").toString().replaceAll("\\\\", "/")
+    
     def ret = ['src',
                ofRoot+"/addons/ofxAndroid/src",
-               ofRoot+"/addons/ofxAccelerometer/src"
+               ofRoot+"/addons/ofxAccelerometer/src",
+               ndkDir+"/sources/cxx-stl/llvm-libc++/src/experimental/filesystem"
     ]
 
     ret += addonSources(ofRoot)

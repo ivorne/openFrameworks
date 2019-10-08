@@ -90,6 +90,24 @@ string ofxAndroidGetStringRes(string id){
 
 }
 
+string ofxAndroidGetFilesDir(){
+	jclass javaClass = ofGetJavaOFAndroid();
+
+	if(javaClass==0){
+		ofLogError("ofxAndroidUtils") << "ofxAndroidGetStringRes(): couldn't find OFAndroid java class";
+		return "";
+	}
+
+	jmethodID getFilesDir = ofGetJNIEnv()->GetStaticMethodID(javaClass,"getFilesDir","()Ljava/lang/String;");
+	if(!getFilesDir){
+		ofLogError("ofxAndroidUtils") << "ofxAndroidGetStringRes(): couldn't find OFAndroid getFilesDir method";
+		return "";
+	}
+	jstring str = (jstring)	ofGetJNIEnv()->CallStaticObjectMethod(javaClass,getFilesDir);
+	jboolean isCopy;
+	return ofGetJNIEnv()->GetStringUTFChars(str,&isCopy);
+}
+
 void ofxAndroidPauseApp(){
 	jclass javaClass = ofGetJavaOFAndroid();
 

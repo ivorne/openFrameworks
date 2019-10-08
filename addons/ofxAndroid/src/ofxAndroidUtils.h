@@ -129,6 +129,8 @@ void ofxAndroidDisableMulticast();
 
 void ofxAndroidSetViewItemChecked(std::string item_name, bool checked);
 
+std::string ofxAndroidGetFilesDir();
+
 enum ofxAndroidSwipeDir{
 	OFX_ANDROID_SWIPE_UP    = 1,
 	OFX_ANDROID_SWIPE_DOWN  = 2,

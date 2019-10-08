@@ -305,6 +305,16 @@ public class OFAndroid {
 			return false;
 		}
 	}
+	
+	static public String getFilesDir(){
+		try {
+			//return (String) OFAndroidLifeCycle.getActivity().getFilesDir().getAbsolutePath();
+			return (String) OFAndroidLifeCycle.getActivity().getExternalFilesDir( null ).getAbsolutePath();
+		} catch (Exception e) {
+			Log.e("OF","Couldn't getFilesDir",e);
+		} 
+		return "";
+	} 
 
 	static private BroadcastReceiver networkStateReceiver;
 	
@@ -854,8 +864,8 @@ public class OFAndroid {
             if( onBackPressed() ) {
             	return true;
            	} else {
-           		// let the Android system handle the back button
-           		return false;
+           		OFAndroidLifeCycle.getActivity().moveTaskToBack(true);
+           		return true;
            	}
         }
 
